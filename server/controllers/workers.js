@@ -1,5 +1,10 @@
+const mongoose = require('mongoose');
+const WorkerModel = require('../models/WorkerModel');
+
 const getWorkers = (req, res) => {
-    res.status(200).json('Workers');
+    const workersDocuments = WorkerModel.find()
+    console.log(workersDocuments)
+    res.status(200).json();
 }
 
 const postWorker = (req, res) => {
