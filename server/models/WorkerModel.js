@@ -33,4 +33,6 @@ const schema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model('Worker', schema);
+const Worker = mongoose.model('Worker', schema)
+
+module.exports = Worker;
