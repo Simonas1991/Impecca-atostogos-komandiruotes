@@ -1,21 +1,19 @@
 const { Router } = require('express');
+const {
+    getWorkers,
+    postWorker,
+    patchWorker,
+    deleteWorker
+} = require('../controllers/workers')
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.send('Workers')
-});
+router.get('/', getWorkers);
 
-router.post('/', (req, res) => {
-    res.send('Add worker')
-});
+router.post('/', postWorker);
 
-router.patch('/:id', (req, res) => {
-    res.send('Update worker')
-});
+router.patch('/:id', patchWorker);
 
-router.delete('/:id', (req, res) => {
-    res.send('Delete worker')
-});
+router.delete('/:id', deleteWorker);
 
 module.exports = router;
