@@ -1,8 +1,9 @@
 // libs
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 // css
-import './WorkerForm.css'
+import './WorkerForm.css';
 
 const WorkerForm = () => {
     const [input, setInput] = useState({
@@ -11,7 +12,7 @@ const WorkerForm = () => {
         personalCode: '',
         address: '',
         number: '',
-        email: '',
+        email: ''
     })
 
     const handleChange = (e) => {
@@ -27,7 +28,15 @@ const WorkerForm = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        console.log(input)
+        const newNote = {
+            name: input.name,
+            surname: input.surname,
+            personalCode: input.personalCode,
+            address: input.address,
+            number: input.number,
+            email: input.email,
+        }
+        axios.post('http://localhost:5000/workers/', newNote)
     }
 
 
