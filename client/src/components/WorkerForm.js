@@ -1,22 +1,20 @@
 // libs
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
+import { WorkersContext } from '../App';
 
 // css
 import './WorkerForm.css';
 
-const WorkerForm = () => {
-    const [input, setInput] = useState({
-        name: '',
-        surname: '',
-        personalCode: '',
-        address: '',
-        number: '',
-        email: ''
-    })
 
+const WorkerForm = () => {
+    // hooks
+    // - useContext
+    const workersContext = useContext(WorkersContext);
+    let { input, setInput, isUpdating, setIsUpdating, updatingId } = workersContext;
+
+    // functions
     const handleChange = (e) => {
-        console.log(e.target.value)
         const { name, value } = e.target;
         setInput((prevInput) => {
             return {
@@ -27,16 +25,47 @@ const WorkerForm = () => {
     }
 
     const handleClick = (e) => {
-        e.preventDefault();
-        const newNote = {
-            name: input.name,
-            surname: input.surname,
-            personalCode: input.personalCode,
-            address: input.address,
-            number: input.number,
-            email: input.email,
+        if (isUpdating) {
+            e.preventDefault();
+            const updatedNote = {
+                name: input.name,
+                surname: input.surname,
+                personalCode: input.personalCode,
+                address: input.address,
+                number: input.number,
+                email: input.email,
+            }
+            axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
+            setIsUpdating(false)
+            setInput({
+                name: '',
+                surname: '',
+                personalCode: '',
+                address: '',
+                number: '',
+                email: ''
+            })
+
+        } else {
+            e.preventDefault();
+            const newNote = {
+                name: input.name,
+                surname: input.surname,
+                personalCode: input.personalCode,
+                address: input.address,
+                number: input.number,
+                email: input.email,
+            }
+            axios.post('http://localhost:5000/workers/', newNote)
+            setInput({
+                name: '',
+                surname: '',
+                personalCode: '',
+                address: '',
+                number: '',
+                email: ''
+            })
         }
-        axios.post('http://localhost:5000/workers/', newNote)
     }
 
 
@@ -97,7 +126,7 @@ const WorkerForm = () => {
                 />
             </div>
             <div className='form-control'>
-                <button onClick={handleClick}>Pateikti</button>
+                <button onClick={handleClick}>{isUpdating ? 'Keisti' : 'Prideti'}</button>
             </div>
         </form>
     )

@@ -5,14 +5,28 @@ import WorkerForm from './components/WorkerForm';
 // components
 import WorkersTable from './components/WorkersTable';
 
-const App = () => {
-  const [workers, setWorkers] = useState([]);
-  console.log(workers)
+// context
+export const WorkersContext = React.createContext();
 
+
+const App = () => {
+  // hooks
+  // - useState
+  const [workers, setWorkers] = useState([]);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [updatingId, setUpdatingId] = useState('')
+  const [input, setInput] = useState({
+    name: '',
+    surname: '',
+    personalCode: '',
+    address: '',
+    number: '',
+    email: ''
+  });
+
+  // - useEffect
   useEffect(() => {
-    fetch(`http://localhost:5000/workers`, {
-      method: "GET"
-    })
+    fetch(`http://localhost:5000/workers`)
       .then(response => response.json())
       .then(data => {
         setWorkers(data)
@@ -20,13 +34,14 @@ const App = () => {
       .catch(err => {
         console.error(err);
       });
-  }, [])
+  }, [workers])
+
 
   return (
-    <div>
+    <WorkersContext.Provider value={{ input, setInput, isUpdating, setIsUpdating, updatingId, setUpdatingId }}>
       <WorkersTable workers={workers} />
       <WorkerForm />
-    </div>
+    </WorkersContext.Provider>
   )
 }
 
