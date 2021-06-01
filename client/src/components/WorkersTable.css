@@ -1,0 +1,19 @@
+.workers-table {
+    margin: 100px auto;
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+
+.workers-table__header {
+    background-color: #000000;
+    color: #fff;
+}
+
+.workers-table__header>tr>th {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.workers-table__body>tr>td {
+    padding: 5px;
+}
