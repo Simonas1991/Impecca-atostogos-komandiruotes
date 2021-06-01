@@ -29,7 +29,6 @@ const schema = new mongoose.Schema(
     },
     {
         timestamps: true,
-        // strict: false // Šis nustatymas leidžia įdėti bet kokias papildomas savybes
     }
 );
 

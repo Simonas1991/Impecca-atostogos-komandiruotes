@@ -1,20 +1,22 @@
 // libs
-import React from 'react'
+import React from 'react';
 
 // css
 import './WorkersTable.css'
 
 const WorkersTable = ({ workers }) => {
+
+  
     return (
         <table className='workers-table'>
             <thead className='workers-table__header'>
                 <tr>
                     <th>Vardas</th>
-                    <th>Pavarde</th>
+                    <th>Pavardė</th>
                     <th>Asmens kodas</th>
                     <th>Adresas</th>
                     <th>Tel. nr.</th>
-                    <th>El. pastas</th>
+                    <th>El.paštas</th>
                     <th></th>
                     <th></th>
                 </tr>
