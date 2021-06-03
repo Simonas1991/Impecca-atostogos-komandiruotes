@@ -7,7 +7,7 @@ import WorkersTable from '../components/WorkersTable'
 
 const Workers = () => {
     return (
-        <main>
+        <main style={{height: '100%'}}>
             <WorkersTable />
             <WorkerForm />
         </main>

@@ -79,7 +79,7 @@ const WorkerForm = () => {
     }
 
     return (
-        <form onSubmit={handleClick}>
+        <form onSubmit={handleClick} className='form-container'>
             <div className='form-control'>
                 <label>Vardas</label>
                 <input
