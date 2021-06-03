@@ -1,9 +1,18 @@
 // libs
-import React, { useState, useEffect } from 'react'
-import WorkerForm from './components/WorkerForm';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // components
-import WorkersTable from './components/WorkersTable';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+// pages
+import Workers from './pages/Workers';
+import Holiday from './pages/Holiday';
+import WorkSchedule from './pages/WorkSchedule';
+
+// css
+import './App.css';
 
 // context
 export const WorkersContext = React.createContext();
@@ -58,8 +67,21 @@ const App = () => {
       updatingId,
       setUpdatingId
     }}>
-      <WorkersTable />
-      <WorkerForm />
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path='/workers'>
+            <Workers />
+          </Route>
+          <Route exact path='/holidays'>
+            <Holiday />
+          </Route>
+          <Route exact path='/work-schedule'>
+            <WorkSchedule />
+          </Route>
+        </Switch>
+      </Router>
+      <Footer />
     </WorkersContext.Provider>
   )
 }
