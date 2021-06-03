@@ -12,13 +12,11 @@ const WorkersTable = () => {
     const workersContext = useContext(WorkersContext);
     let { workers, deleteClick, setDeleteClick, setInput, isUpdating, setIsUpdating, setUpdatingId } = workersContext;
 
-    console.log(workers)
     // functions
     const handleDelete = (e, worker) => {
         e.preventDefault();
         axios.delete(`http://localhost:5000/workers/${worker._id}`)
         setDeleteClick(!deleteClick)
-        console.log(deleteClick)
     }
 
     const handleUpdate = (e, worker) => {
