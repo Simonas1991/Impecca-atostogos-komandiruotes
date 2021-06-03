@@ -13,9 +13,9 @@ const WorkersTable = () => {
     let { workers, deleteClick, setDeleteClick, setInput, isUpdating, setIsUpdating, setUpdatingId } = workersContext;
 
     // functions
-    const handleDelete = (e, worker) => {
+    const handleDelete = async (e, worker) => {
         e.preventDefault();
-        axios.delete(`http://localhost:5000/workers/${worker._id}`)
+        await axios.delete(`http://localhost:5000/workers/${worker._id}`)
         setDeleteClick(!deleteClick)
     }
 
