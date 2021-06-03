@@ -7,10 +7,10 @@ import WorkersTable from '../components/WorkersTable'
 
 const Workers = () => {
     return (
-        <div>
+        <main>
             <WorkersTable />
             <WorkerForm />
-        </div>
+        </main>
     )
 }
 
