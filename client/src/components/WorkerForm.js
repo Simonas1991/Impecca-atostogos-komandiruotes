@@ -11,7 +11,16 @@ const WorkerForm = () => {
     // hooks
     // - useContext
     const workersContext = useContext(WorkersContext);
-    let { input, setInput, isUpdating, setIsUpdating, updatingId } = workersContext;
+    let {
+        updateClick,
+        setUpdateClick,
+        postClick,
+        setPostClick,
+        input,
+        setInput,
+        isUpdating,
+        setIsUpdating,
+        updatingId } = workersContext;
 
     // functions
     const handleChange = (e) => {
@@ -26,6 +35,7 @@ const WorkerForm = () => {
 
     const handleClick = (e) => {
         if (isUpdating) {
+            e.preventDefault();
             const updatedNote = {
                 name: input.name,
                 surname: input.surname,
@@ -36,8 +46,17 @@ const WorkerForm = () => {
             }
             axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
             setIsUpdating(false)
-
+            setUpdateClick(!updateClick)
+            setInput({
+                name: '',
+                surname: '',
+                personalCode: '',
+                address: '',
+                number: '',
+                email: ''
+            })
         } else {
+            e.preventDefault();
             const newNote = {
                 name: input.name,
                 surname: input.surname,
@@ -47,12 +66,20 @@ const WorkerForm = () => {
                 email: input.email,
             }
             axios.post('http://localhost:5000/workers/', newNote)
+            setPostClick(!postClick)
+            setInput({
+                name: '',
+                surname: '',
+                personalCode: '',
+                address: '',
+                number: '',
+                email: ''
+            })
         }
     }
 
-
     return (
-        <form>
+        <form onSubmit={handleClick}>
             <div className='form-control'>
                 <label>Vardas</label>
                 <input
@@ -108,7 +135,7 @@ const WorkerForm = () => {
                 />
             </div>
             <div className='form-control'>
-                <button onClick={handleClick}>{isUpdating ? 'Keisti' : 'Prideti'}</button>
+                <button >{isUpdating ? 'Keisti' : 'Prideti'}</button>
             </div>
         </form>
     )

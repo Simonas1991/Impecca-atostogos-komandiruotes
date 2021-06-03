@@ -14,7 +14,10 @@ const App = () => {
   // - useState
   const [workers, setWorkers] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [updatingId, setUpdatingId] = useState('')
+  const [updatingId, setUpdatingId] = useState('');
+  const [deleteClick, setDeleteClick] = useState(false);
+  const [postClick, setPostClick] = useState(false);
+  const [updateClick, setUpdateClick] = useState(false);
   const [input, setInput] = useState({
     name: '',
     surname: '',
@@ -34,12 +37,28 @@ const App = () => {
       .catch(err => {
         console.error(err);
       });
-  }, [])
+  }, [deleteClick, postClick, updateClick])
+
 
 
   return (
-    <WorkersContext.Provider value={{ input, setInput, isUpdating, setIsUpdating, updatingId, setUpdatingId }}>
-      <WorkersTable workers={workers} />
+    <WorkersContext.Provider value={{
+      updateClick,
+      setUpdateClick,
+      postClick,
+      setPostClick,
+      deleteClick,
+      setDeleteClick,
+      workers,
+      setWorkers,
+      input,
+      setInput,
+      isUpdating,
+      setIsUpdating,
+      updatingId,
+      setUpdatingId
+    }}>
+      <WorkersTable />
       <WorkerForm />
     </WorkersContext.Provider>
   )

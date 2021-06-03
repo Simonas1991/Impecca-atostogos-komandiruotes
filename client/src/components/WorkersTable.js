@@ -6,21 +6,23 @@ import { WorkersContext } from '../App';
 // css
 import './WorkersTable.css'
 
-const WorkersTable = ({ workers }) => {
+const WorkersTable = () => {
     // hooks
     // - useContext
     const workersContext = useContext(WorkersContext);
-    let { input, setInput, isUpdating, setIsUpdating, setUpdatingId } = workersContext;
+    let { workers, deleteClick, setDeleteClick, setInput, isUpdating, setIsUpdating, setUpdatingId } = workersContext;
 
+    console.log(workers)
     // functions
     const handleDelete = (e, worker) => {
         e.preventDefault();
         axios.delete(`http://localhost:5000/workers/${worker._id}`)
+        setDeleteClick(!deleteClick)
+        console.log(deleteClick)
     }
 
     const handleUpdate = (e, worker) => {
         e.preventDefault();
-        console.log(worker)
         setIsUpdating(!isUpdating)
         setUpdatingId(worker._id)
         setInput(worker)
