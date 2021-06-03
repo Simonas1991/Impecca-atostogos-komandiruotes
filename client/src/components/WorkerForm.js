@@ -26,7 +26,6 @@ const WorkerForm = () => {
 
     const handleClick = (e) => {
         if (isUpdating) {
-            e.preventDefault();
             const updatedNote = {
                 name: input.name,
                 surname: input.surname,
@@ -37,17 +36,8 @@ const WorkerForm = () => {
             }
             axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
             setIsUpdating(false)
-            setInput({
-                name: '',
-                surname: '',
-                personalCode: '',
-                address: '',
-                number: '',
-                email: ''
-            })
 
         } else {
-            e.preventDefault();
             const newNote = {
                 name: input.name,
                 surname: input.surname,
@@ -57,14 +47,6 @@ const WorkerForm = () => {
                 email: input.email,
             }
             axios.post('http://localhost:5000/workers/', newNote)
-            setInput({
-                name: '',
-                surname: '',
-                personalCode: '',
-                address: '',
-                number: '',
-                email: ''
-            })
         }
     }
 
