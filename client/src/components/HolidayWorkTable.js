@@ -11,6 +11,28 @@ const HolidayWorkTable = () => {
     const workersContext = useContext(WorkersContext);
     let { workers } = workersContext;
 
+    // variables
+    let holidayArray = workers.filter(worker => worker.type === 'holiday');
+    let workArray = workers.filter(worker => worker.type === 'work');
+    let noStatusArray = workers.filter(worker => worker.type === '');
+
+    // functions
+    const mapArr = (arr) => {
+        return (
+            arr.map((worker, i) => (
+                <tbody key={i} className='workers-table__body'>
+                    <tr>
+                        <td>{worker.name}</td>
+                        <td>{worker.surname}</td>
+                        <td>{worker.personalCode}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            ))
+        )
+    }
+
     return (
         <div className='tables-container'>
             <div>
@@ -23,10 +45,9 @@ const HolidayWorkTable = () => {
                             <th>Asmens kodas</th>
                             <th>Nuo</th>
                             <th>Iki</th>
-                            <th></th>
-                            <th></th>
                         </tr>
                     </thead>
+                    {mapArr(holidayArray)}
                 </table>
             </div>
             <div>
@@ -39,10 +60,9 @@ const HolidayWorkTable = () => {
                             <th>Asmens kodas</th>
                             <th>Nuo</th>
                             <th>Iki</th>
-                            <th></th>
-                            <th></th>
                         </tr>
                     </thead>
+                    {mapArr(workArray)}
                 </table>
             </div>
             <div>
@@ -55,10 +75,9 @@ const HolidayWorkTable = () => {
                             <th>Asmens kodas</th>
                             <th>Nuo</th>
                             <th>Iki</th>
-                            <th></th>
-                            <th></th>
                         </tr>
                     </thead>
+                    {mapArr(noStatusArray)}
                 </table>
             </div>
 

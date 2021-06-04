@@ -1,6 +1,6 @@
 .tables-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .tables-container>div>h3{
