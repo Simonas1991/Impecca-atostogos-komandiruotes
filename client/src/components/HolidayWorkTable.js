@@ -12,19 +12,57 @@ const HolidayWorkTable = () => {
     let { workers } = workersContext;
 
     return (
-        <table className='holiday-work-table'>
-            <thead className='holiday-work-table__header'>
-                <tr>
-                    <th>Vardas</th>
-                    <th>Pavardė</th>
-                    <th>Asmens kodas</th>
-                    <th>Nuo</th>
-                    <th>Iki</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-        </table>
+        <div className='tables-container'>
+            <div>
+                <h3>Atostogos</h3>
+                <table className='table'>
+                    <thead className='table__header'>
+                        <tr>
+                            <th>Vardas</th>
+                            <th>Pavardė</th>
+                            <th>Asmens kodas</th>
+                            <th>Nuo</th>
+                            <th>Iki</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div>
+                <h3>Komandiruotes</h3>
+                <table className='table'>
+                    <thead className='table__header'>
+                        <tr>
+                            <th>Vardas</th>
+                            <th>Pavardė</th>
+                            <th>Asmens kodas</th>
+                            <th>Nuo</th>
+                            <th>Iki</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div>
+                <h3>Be statuso</h3>
+                <table className='table'>
+                    <thead className='table__header'>
+                        <tr>
+                            <th>Vardas</th>
+                            <th>Pavardė</th>
+                            <th>Asmens kodas</th>
+                            <th>Nuo</th>
+                            <th>Iki</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
     )
 }
 

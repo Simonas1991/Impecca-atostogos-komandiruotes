@@ -1,19 +1,26 @@
-.holiday-work-table {
-    margin: 100px auto;
+.tables-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tables-container>div>h3{
+    text-align: center;
+    margin: 1rem;
+}
+
+.table {
+    margin:auto 0 100px;
     border: 1px solid #000000;
     border-collapse: collapse;
 }
 
-.holiday-work-table__header {
+.table__header {
     background-color: #000000;
     color: #fff;
 }
 
-.holiday-work-table__header>tr>th {
+.table__header>tr>th {
     padding: 10px;
     font-size: 20px;
 }
 
-.workers-table__body>tr>td {
-    padding: 8px;
-}
