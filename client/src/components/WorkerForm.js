@@ -43,6 +43,7 @@ const WorkerForm = () => {
                 address: input.address,
                 number: input.number,
                 email: input.email,
+                type: input.type
             }
             try {
                 await axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
@@ -54,7 +55,8 @@ const WorkerForm = () => {
                     personalCode: '',
                     address: '',
                     number: '',
-                    email: ''
+                    email: '',
+                    type: ''
                 })
             }
             catch (err) {
@@ -69,6 +71,7 @@ const WorkerForm = () => {
                 address: input.address,
                 number: input.number,
                 email: input.email,
+                type: input.type
             }
             try {
                 await axios.post('http://localhost:5000/workers/', newNote)
@@ -79,7 +82,8 @@ const WorkerForm = () => {
                     personalCode: '',
                     address: '',
                     number: '',
-                    email: ''
+                    email: '',
+                    type: ''
                 })
             }
             catch (err) {
@@ -143,6 +147,14 @@ const WorkerForm = () => {
                     value={input.email}
                     onChange={handleChange}
                 />
+            </div>
+            <div className='form-control'>
+                <label>Statusas:</label>
+                <select name="type" value={input.type} onChange={handleChange}>
+                    <option value="nostatus">Be statuso</option>
+                    <option value="holiday">Neapmokamose atostogose</option>
+                    <option value="work">Komandiruoteje</option>
+                </select>
             </div>
             <div className='form-control'>
                 <button >{isUpdating ? 'Keisti' : 'Prideti'}</button>

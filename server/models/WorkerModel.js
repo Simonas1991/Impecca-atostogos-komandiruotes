@@ -25,6 +25,10 @@ const schema = new mongoose.Schema(
         email: {
             type: String,
             required: false
+        },
+        type: {
+            type: String,
+            required: false
         }
     },
     {
