@@ -10,7 +10,14 @@ const WorkersTable = () => {
     // hooks
     // - useContext
     const workersContext = useContext(WorkersContext);
-    let { workers, deleteClick, setDeleteClick, setInput, isUpdating, setIsUpdating, setUpdatingId } = workersContext;
+    let {
+        workers,
+        deleteClick,
+        setDeleteClick,
+        setInput,
+        isUpdating,
+        setIsUpdating,
+        setUpdatingId } = workersContext;
 
     // functions
     const handleDelete = async (e, worker) => {

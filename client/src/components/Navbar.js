@@ -15,8 +15,7 @@ const Navbar = () => {
             <div className='navbar-container__list'>
                 <ul>
                     <li><Link to='/workers'>Darbuotoju sarasas</Link></li>
-                    <li><Link to='/holiday'>Atostogu tvarkarastis</Link></li>
-                    <li><Link to='/work-schedule'>Komandiruociu tvarkarastis</Link></li>
+                    <li><Link to='/holiday-work-schedule'>Atostogu/Komandiruociu tvarkarastis</Link></li>
                 </ul>
             </div>
         </nav>

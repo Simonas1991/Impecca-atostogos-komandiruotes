@@ -8,8 +8,7 @@ import Footer from './components/Footer';
 
 // pages
 import Workers from './pages/Workers';
-import Holiday from './pages/Holiday';
-import WorkSchedule from './pages/WorkSchedule';
+import HolidayWorkSchedule from './pages/HolidayWorkSchedule';
 
 // css
 import './App.css';
@@ -73,11 +72,8 @@ const App = () => {
           <Route exact path='/workers'>
             <Workers />
           </Route>
-          <Route exact path='/holidays'>
-            <Holiday />
-          </Route>
-          <Route exact path='/work-schedule'>
-            <WorkSchedule />
+          <Route exact path='/holiday-work-schedule'>
+            <HolidayWorkSchedule />
           </Route>
         </Switch>
       </Router>
