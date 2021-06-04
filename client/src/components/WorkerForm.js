@@ -33,7 +33,7 @@ const WorkerForm = () => {
         })
     }
 
-    const handleClick = (e) => {
+    const handleSubmit = async (e) => {
         if (isUpdating) {
             e.preventDefault();
             const updatedNote = {
@@ -44,17 +44,22 @@ const WorkerForm = () => {
                 number: input.number,
                 email: input.email,
             }
-            axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
-            setIsUpdating(false)
-            setUpdateClick(!updateClick)
-            setInput({
-                name: '',
-                surname: '',
-                personalCode: '',
-                address: '',
-                number: '',
-                email: ''
-            })
+            try {
+                await axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
+                setIsUpdating(false)
+                setUpdateClick(!updateClick)
+                setInput({
+                    name: '',
+                    surname: '',
+                    personalCode: '',
+                    address: '',
+                    number: '',
+                    email: ''
+                })
+            }
+            catch (err) {
+                console.log(err)
+            }
         } else {
             e.preventDefault();
             const newNote = {
@@ -65,21 +70,26 @@ const WorkerForm = () => {
                 number: input.number,
                 email: input.email,
             }
-            axios.post('http://localhost:5000/workers/', newNote)
-            setPostClick(!postClick)
-            setInput({
-                name: '',
-                surname: '',
-                personalCode: '',
-                address: '',
-                number: '',
-                email: ''
-            })
+            try {
+                await axios.post('http://localhost:5000/workers/', newNote)
+                setPostClick(!postClick)
+                setInput({
+                    name: '',
+                    surname: '',
+                    personalCode: '',
+                    address: '',
+                    number: '',
+                    email: ''
+                })
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
     }
 
     return (
-        <form onSubmit={handleClick} className='form-container'>
+        <form onSubmit={handleSubmit} className='form-container'>
             <div className='form-control'>
                 <label>Vardas</label>
                 <input
