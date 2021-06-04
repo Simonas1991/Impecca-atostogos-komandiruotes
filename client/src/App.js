@@ -19,6 +19,15 @@ export const WorkersContext = React.createContext();
 
 
 const App = () => {
+  // functions
+  const getWorkers = async () => {
+    const response = await fetch(`http://localhost:5000/workers`)
+    const data = await response.json();
+    console.log(data)
+    return setWorkers(data)
+
+  }
+
   // hooks
   // - useState
   const [workers, setWorkers] = useState([]);
@@ -38,17 +47,8 @@ const App = () => {
 
   // - useEffect
   useEffect(() => {
-    fetch(`http://localhost:5000/workers`)
-      .then(response => response.json())
-      .then(data => {
-        setWorkers(data)
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    getWorkers();
   }, [deleteClick, postClick, updateClick])
-
-
 
   return (
     <WorkersContext.Provider value={{
