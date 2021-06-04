@@ -11,7 +11,7 @@ const schema = new mongoose.Schema(
             required: true
         },
         personalCode: {
-            type: Number,
+            type: String,
             required: true
         },
         address: {
@@ -19,7 +19,7 @@ const schema = new mongoose.Schema(
             required: true
         },
         number: {
-            type: Number,
+            type: String,
             required: true
         },
         email: {

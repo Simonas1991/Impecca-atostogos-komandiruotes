@@ -151,13 +151,13 @@ const WorkerForm = () => {
             <div className='form-control'>
                 <label>Statusas:</label>
                 <select name="type" value={input.type} onChange={handleChange}>
-                    <option value="nostatus">Be statuso</option>
+                    <option value="">Be statuso</option>
                     <option value="holiday">Neapmokamose atostogose</option>
                     <option value="work">Komandiruoteje</option>
                 </select>
             </div>
-            <div className='form-control'>
-                <button >{isUpdating ? 'Keisti' : 'Prideti'}</button>
+            <div className='form-control' style={{display:'flex', justifyContent:'flex-end'}}>
+                <button style={{ position: 'relative', right:'-192px'}}>{isUpdating ? 'Keisti' : 'Prideti'}</button>
             </div>
         </form>
     )
