@@ -24,7 +24,18 @@ const WorkerForm = () => {
         setStatusCustom
     } = workersContext;
 
-    console.log('statusCustom: ', statusCustom);
+    // variables
+    const emptyInputsObj = {
+        name: '',
+        surname: '',
+        personalCode: '',
+        address: '',
+        number: '',
+        email: '',
+        type: '',
+        to: '',
+        from: ''
+    }
 
     // functions
     const handleChange = (e) => {
@@ -49,6 +60,13 @@ const WorkerForm = () => {
         else setStatusCustom(false)
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setInput(emptyInputsObj)
+        setStatusCustom(false);
+        setIsUpdating(false)
+    }
+
     const handleSubmit = async (e) => {
         if (isUpdating) {
             e.preventDefault();
@@ -67,17 +85,7 @@ const WorkerForm = () => {
                 await axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
                 setIsUpdating(false)
                 setUpdateClick(!updateClick)
-                setInput({
-                    name: '',
-                    surname: '',
-                    personalCode: '',
-                    address: '',
-                    number: '',
-                    email: '',
-                    type: '',
-                    to: '',
-                    from: ''
-                })
+                setInput(emptyInputsObj)
             }
             catch (err) {
                 console.log(err)
@@ -91,24 +99,14 @@ const WorkerForm = () => {
                 address: input.address,
                 number: input.number,
                 email: input.email,
-                type: input.type,
+                type: '',
                 from: input.from,
                 to: input.to
             }
             try {
                 await axios.post('http://localhost:5000/workers/', newNote)
                 setPostClick(!postClick)
-                setInput({
-                    name: '',
-                    surname: '',
-                    personalCode: '',
-                    address: '',
-                    number: '',
-                    email: '',
-                    type: '',
-                    to: '',
-                    from: ''
-                })
+                setInput(emptyInputsObj)
             }
             catch (err) {
                 console.log(err)
@@ -196,7 +194,8 @@ const WorkerForm = () => {
                 }
             </div>
             <div className='form-control' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <button style={{ position: 'relative', right: '-192px' }}>{isUpdating ? 'Keisti' : 'Prideti'}</button>
+                <button style={{ position: 'relative', right: '-192px', marginTop: '10px' }}>{isUpdating ? 'Keisti' : 'Prideti'}</button>
+                <button style={{ position: 'relative', top: '-31px' }} onClick={handleCancel}>Atsaukti</button>
             </div>
         </form>
     )
