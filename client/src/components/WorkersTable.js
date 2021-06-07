@@ -18,7 +18,6 @@ const WorkersTable = () => {
         isUpdating,
         setIsUpdating,
         setUpdatingId,
-        statusCustom,
         setStatusCustom
     } = workersContext;
 
@@ -36,10 +35,19 @@ const WorkersTable = () => {
 
     const handleUpdate = (e, worker) => {
         e.preventDefault();
-        console.log(worker.type)
-        if (isUpdating === true && (worker.type === 'holiday' || worker.type === 'work')) {
-            setStatusCustom(true)
+        switch (worker.type) {
+            case '':
+                setStatusCustom(false)
+                break;
+            case 'holiday':
+                setStatusCustom(true)
+                break;
+            case 'work':
+                setStatusCustom(true)
+                break;
+            default: break;
         }
+        if(isUpdating) setStatusCustom(false)
         setIsUpdating(!isUpdating)
         setUpdatingId(worker._id)
         setInput(worker)

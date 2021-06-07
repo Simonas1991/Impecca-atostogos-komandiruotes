@@ -6,7 +6,6 @@ import { WorkersContext } from '../App';
 // css
 import './WorkerForm.css';
 
-
 const WorkerForm = () => {
     // hooks
     // - useContext
@@ -24,6 +23,8 @@ const WorkerForm = () => {
         statusCustom,
         setStatusCustom
     } = workersContext;
+
+    console.log('statusCustom: ', statusCustom);
 
     // functions
     const handleChange = (e) => {
@@ -44,7 +45,8 @@ const WorkerForm = () => {
                 [name]: value
             }
         })
-        setStatusCustom(true)
+        if (value === 'holiday' || value === 'work') setStatusCustom(true)
+        else setStatusCustom(false)
     }
 
     const handleSubmit = async (e) => {
@@ -115,9 +117,6 @@ const WorkerForm = () => {
         setStatusCustom(false);
     };
 
-
-    console.log(statusCustom)
-
     return (
         <form onSubmit={handleSubmit} className='form-container'>
             <div className='form-control'>
@@ -184,7 +183,11 @@ const WorkerForm = () => {
                     </select>
                     :
                     <>
-                        <button onClick={() => setStatusCustom(false)}>X</button>
+                        <select name="type" value={input.type} onChange={handleSelect}>
+                            <option value="">Be statuso</option>
+                            <option value="holiday">Neapmokamose atostogose</option>
+                            <option value="work">Komandiruoteje</option>
+                        </select>
                         <label>Nuo</label>
                         <input name="from" value={input.from} onChange={handleChange} />
                         <label>Iki</label>

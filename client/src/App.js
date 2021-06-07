@@ -23,7 +23,7 @@ const App = () => {
     const response = await fetch(`http://localhost:5000/workers`)
     const data = await response.json();
     console.log(data)
-    return setWorkers(data)
+    setWorkers(data)
 
   };
 
@@ -35,7 +35,7 @@ const App = () => {
   const [deleteClick, setDeleteClick] = useState(false);
   const [postClick, setPostClick] = useState(false);
   const [updateClick, setUpdateClick] = useState(false);
-  const [statusCustom, setStatusCustom] = useState(false)
+  const [statusCustom, setStatusCustom] = useState(false);
   const [input, setInput] = useState({
     name: '',
     surname: '',
@@ -51,7 +51,7 @@ const App = () => {
   // - useEffect
   useEffect(() => {
     getWorkers();
-  }, [deleteClick, postClick, updateClick])
+  }, [deleteClick, postClick, updateClick, isUpdating])
 
   return (
     <WorkersContext.Provider value={{
