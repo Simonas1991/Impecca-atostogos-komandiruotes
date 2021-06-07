@@ -9,7 +9,7 @@ const HolidayWorkTable = () => {
     // hooks
     // - useContext
     const workersContext = useContext(WorkersContext);
-    let { workers } = workersContext;
+    let { workers, setUpdatingId, setInput } = workersContext;
 
     // variables
     let holidayArray = workers.filter(worker => worker.type === 'holiday');
@@ -17,6 +17,17 @@ const HolidayWorkTable = () => {
     let noStatusArray = workers.filter(worker => worker.type === '');
 
     // functions
+const handleUpdate = (e, worker) => {
+    let {to , from} = worker
+    console.log(to , from)
+    setUpdatingId(worker._id)
+    setInput({
+        to: to,
+        from: from
+    })
+    
+}
+
     const mapArr = (arr) => {
         return (
             arr.map((worker, i) => (
@@ -27,6 +38,7 @@ const HolidayWorkTable = () => {
                         <td>{worker.personalCode}</td>
                         <td>{worker.from}</td>
                         <td>{worker.to}</td>
+                        <td><button onClick={(e) => handleUpdate(e, worker)}>Keisti</button></td>
                     </tr>
                 </tbody>
             ))
@@ -45,6 +57,7 @@ const HolidayWorkTable = () => {
                             <th>Asmens kodas</th>
                             <th>Nuo</th>
                             <th>Iki</th>
+                            <th></th>
                         </tr>
                     </thead>
                     {mapArr(holidayArray)}
@@ -60,6 +73,7 @@ const HolidayWorkTable = () => {
                             <th>Asmens kodas</th>
                             <th>Nuo</th>
                             <th>Iki</th>
+                            <th></th>
                         </tr>
                     </thead>
                     {mapArr(workArray)}

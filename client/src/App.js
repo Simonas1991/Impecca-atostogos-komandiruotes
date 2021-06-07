@@ -22,7 +22,7 @@ const App = () => {
   const getWorkers = async () => {
     const response = await fetch(`http://localhost:5000/workers`)
     const data = await response.json();
-    console.log(data)
+    console.log(data[1])
     setWorkers(data)
 
   };
