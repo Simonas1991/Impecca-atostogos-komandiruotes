@@ -16,4 +16,5 @@
 
 .workers-table__body>tr>td {
     padding: 8px;
+    text-align: center;
 }

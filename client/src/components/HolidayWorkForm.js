@@ -47,4 +47,4 @@ const HolidayWorkForm = () => {
     )
 }
 
-export default HolidayWorkForm
+export default HolidayWorkForm;

@@ -17,22 +17,29 @@ const WorkersTable = () => {
         setInput,
         isUpdating,
         setIsUpdating,
-        setUpdatingId } = workersContext;
+        setUpdatingId,
+        statusCustom,
+        setStatusCustom
+    } = workersContext;
 
     // functions
     const handleDelete = async (e, worker) => {
         e.preventDefault();
-        try{
+        try {
             await axios.delete(`http://localhost:5000/workers/${worker._id}`)
             setDeleteClick(!deleteClick)
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
     }
 
     const handleUpdate = (e, worker) => {
         e.preventDefault();
+        console.log(worker.type)
+        if (isUpdating === true && (worker.type === 'holiday' || worker.type === 'work')) {
+            setStatusCustom(true)
+        }
         setIsUpdating(!isUpdating)
         setUpdatingId(worker._id)
         setInput(worker)

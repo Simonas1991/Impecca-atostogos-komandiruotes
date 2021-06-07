@@ -22,9 +22,10 @@ const App = () => {
   const getWorkers = async () => {
     const response = await fetch(`http://localhost:5000/workers`)
     const data = await response.json();
+    console.log(data)
     return setWorkers(data)
 
-  }
+  };
 
   // hooks
   // - useState
@@ -34,13 +35,17 @@ const App = () => {
   const [deleteClick, setDeleteClick] = useState(false);
   const [postClick, setPostClick] = useState(false);
   const [updateClick, setUpdateClick] = useState(false);
+  const [statusCustom, setStatusCustom] = useState(false)
   const [input, setInput] = useState({
     name: '',
     surname: '',
     personalCode: '',
     address: '',
     number: '',
-    email: ''
+    email: '',
+    type: '',
+    from: '',
+    to: ''
   });
 
   // - useEffect
@@ -63,7 +68,9 @@ const App = () => {
       isUpdating,
       setIsUpdating,
       updatingId,
-      setUpdatingId
+      setUpdatingId,
+      statusCustom,
+      setStatusCustom
     }}>
       <Router>
         <Navbar />
@@ -79,7 +86,7 @@ const App = () => {
       <Footer />
     </WorkersContext.Provider>
   )
-}
+};
 
-export default App
+export default App;
 

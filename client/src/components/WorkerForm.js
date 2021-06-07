@@ -20,7 +20,10 @@ const WorkerForm = () => {
         setInput,
         isUpdating,
         setIsUpdating,
-        updatingId } = workersContext;
+        updatingId,
+        statusCustom,
+        setStatusCustom
+    } = workersContext;
 
     // functions
     const handleChange = (e) => {
@@ -31,6 +34,17 @@ const WorkerForm = () => {
                 [name]: value
             }
         })
+    };
+
+    const handleSelect = (e) => {
+        const { name, value } = e.target;
+        setInput((prevInput) => {
+            return {
+                ...prevInput,
+                [name]: value
+            }
+        })
+        setStatusCustom(true)
     }
 
     const handleSubmit = async (e) => {
@@ -43,7 +57,9 @@ const WorkerForm = () => {
                 address: input.address,
                 number: input.number,
                 email: input.email,
-                type: input.type
+                type: input.type,
+                from: input.from,
+                to: input.to
             }
             try {
                 await axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
@@ -56,7 +72,9 @@ const WorkerForm = () => {
                     address: '',
                     number: '',
                     email: '',
-                    type: ''
+                    type: '',
+                    to: '',
+                    from: ''
                 })
             }
             catch (err) {
@@ -71,7 +89,9 @@ const WorkerForm = () => {
                 address: input.address,
                 number: input.number,
                 email: input.email,
-                type: input.type
+                type: input.type,
+                from: input.from,
+                to: input.to
             }
             try {
                 await axios.post('http://localhost:5000/workers/', newNote)
@@ -83,14 +103,20 @@ const WorkerForm = () => {
                     address: '',
                     number: '',
                     email: '',
-                    type: ''
+                    type: '',
+                    to: '',
+                    from: ''
                 })
             }
             catch (err) {
                 console.log(err)
             }
         }
-    }
+        setStatusCustom(false);
+    };
+
+
+    console.log(statusCustom)
 
     return (
         <form onSubmit={handleSubmit} className='form-container'>
@@ -150,17 +176,27 @@ const WorkerForm = () => {
             </div>
             <div className='form-control'>
                 <label>Statusas:</label>
-                <select name="type" value={input.type} onChange={handleChange}>
-                    <option value="">Be statuso</option>
-                    <option value="holiday">Neapmokamose atostogose</option>
-                    <option value="work">Komandiruoteje</option>
-                </select>
+                {!statusCustom ?
+                    <select name="type" value={input.type} onChange={handleSelect}>
+                        <option value="">Be statuso</option>
+                        <option value="holiday">Neapmokamose atostogose</option>
+                        <option value="work">Komandiruoteje</option>
+                    </select>
+                    :
+                    <>
+                        <button onClick={() => setStatusCustom(false)}>X</button>
+                        <label>Nuo</label>
+                        <input name="from" value={input.from} onChange={handleChange} />
+                        <label>Iki</label>
+                        <input name="to" value={input.to} onChange={handleChange} />
+                    </>
+                }
             </div>
-            <div className='form-control' style={{display:'flex', justifyContent:'flex-end'}}>
-                <button style={{ position: 'relative', right:'-192px'}}>{isUpdating ? 'Keisti' : 'Prideti'}</button>
+            <div className='form-control' style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <button style={{ position: 'relative', right: '-192px' }}>{isUpdating ? 'Keisti' : 'Prideti'}</button>
             </div>
         </form>
     )
-}
+};
 
-export default WorkerForm
+export default WorkerForm;

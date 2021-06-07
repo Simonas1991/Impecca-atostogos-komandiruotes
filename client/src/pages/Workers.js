@@ -1,9 +1,9 @@
 // libs
-import React from 'react'
+import React from 'react';
 
 // components
-import WorkerForm from '../components/WorkerForm'
-import WorkersTable from '../components/WorkersTable'
+import WorkerForm from '../components/WorkerForm';
+import WorkersTable from '../components/WorkersTable';
 
 const Workers = () => {
     return (
@@ -12,6 +12,6 @@ const Workers = () => {
             <WorkerForm />
         </main>
     )
-}
+};
 
-export default Workers
+export default Workers;

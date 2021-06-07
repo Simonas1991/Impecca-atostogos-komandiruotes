@@ -1,9 +1,9 @@
 // libs
-import React from 'react'
+import React from 'react';
 
 // components
-import HolidayWorkForm from '../components/HolidayWorkForm'
-import HolidayWorkTable from '../components/HolidayWorkTable'
+import HolidayWorkForm from '../components/HolidayWorkForm';
+import HolidayWorkTable from '../components/HolidayWorkTable';
 
 const HolidayWorkSchedule = () => {
     return (
@@ -12,6 +12,6 @@ const HolidayWorkSchedule = () => {
             <HolidayWorkForm />
         </main>
     )
-}
+};
 
-export default HolidayWorkSchedule
+export default HolidayWorkSchedule;

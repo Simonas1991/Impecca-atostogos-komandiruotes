@@ -1,9 +1,9 @@
 // libs
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { WorkersContext } from '../App';
 
 // css
-import './HolidayWorkTable.css'
+import './HolidayWorkTable.css';
 
 const HolidayWorkTable = () => {
     // hooks
@@ -25,13 +25,13 @@ const HolidayWorkTable = () => {
                         <td>{worker.name}</td>
                         <td>{worker.surname}</td>
                         <td>{worker.personalCode}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{worker.from}</td>
+                        <td>{worker.to}</td>
                     </tr>
                 </tbody>
             ))
         )
-    }
+    };
 
     return (
         <div className='tables-container'>
@@ -73,11 +73,17 @@ const HolidayWorkTable = () => {
                             <th>Vardas</th>
                             <th>Pavardė</th>
                             <th>Asmens kodas</th>
-                            <th>Nuo</th>
-                            <th>Iki</th>
                         </tr>
                     </thead>
-                    {mapArr(noStatusArray)}
+                    {noStatusArray.map((worker, i) => (
+                        <tbody key={i} className='workers-table__body'>
+                            <tr>
+                                <td>{worker.name}</td>
+                                <td>{worker.surname}</td>
+                                <td>{worker.personalCode}</td>
+                            </tr>
+                        </tbody>
+                    ))}
                 </table>
             </div>
 
