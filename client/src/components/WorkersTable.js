@@ -1,5 +1,5 @@
 // libs
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { WorkersContext } from '../App';
 
@@ -8,6 +8,9 @@ import './WorkersTable.css'
 
 const WorkersTable = () => {
     // hooks
+    // - useState
+    const [activeId, setActiveId] = useState('')
+
     // - useContext
     const workersContext = useContext(WorkersContext);
     let {
@@ -18,7 +21,9 @@ const WorkersTable = () => {
         isUpdating,
         setIsUpdating,
         setUpdatingId,
-        setStatusCustom
+        setStatusCustom,
+        isActive,
+        setIsActive
     } = workersContext;
 
     // functions
@@ -35,6 +40,9 @@ const WorkersTable = () => {
 
     const handleUpdate = (e, worker) => {
         e.preventDefault();
+        setIsActive(!isActive)
+        setActiveId(worker._id)
+        console.log(worker._id)
         switch (worker.type) {
             case '':
                 setStatusCustom(false)
@@ -47,12 +55,12 @@ const WorkersTable = () => {
                 break;
             default: break;
         }
-        if(isUpdating) setStatusCustom(false)
+        if (isUpdating) setStatusCustom(false)
         setIsUpdating(!isUpdating)
         setUpdatingId(worker._id)
         setInput(worker)
     }
-
+    console.log(isActive)
     return (
         <table className='workers-table'>
             <thead className='workers-table__header'>
@@ -67,9 +75,9 @@ const WorkersTable = () => {
                     <th></th>
                 </tr>
             </thead>
-            {workers.map((worker, i) => (
-                <tbody key={i} className='workers-table__body'>
-                    <tr>
+            <tbody className='workers-table__body'>
+                {workers.map((worker, i) => (
+                    <tr key={i}  className={activeId === worker._id && isActive ? 'active' : ''}>
                         <td>{worker.name}</td>
                         <td>{worker.surname}</td>
                         <td>{worker.personalCode}</td>
@@ -79,10 +87,11 @@ const WorkersTable = () => {
                         <td><button onClick={(e) => handleUpdate(e, worker)}>Keisti</button></td>
                         <td><button onClick={(e) => handleDelete(e, worker)}>Trinti</button></td>
                     </tr>
-                </tbody>
-            ))}
+                ))}
+            </tbody>
         </table>
     )
 }
 
 export default WorkersTable
+

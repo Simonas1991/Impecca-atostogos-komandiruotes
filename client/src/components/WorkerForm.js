@@ -20,6 +20,7 @@ const WorkerForm = () => {
         isUpdating,
         setIsUpdating,
         updatingId,
+        setIsActive,
         statusCustom,
         setStatusCustom
     } = workersContext;
@@ -60,11 +61,13 @@ const WorkerForm = () => {
         else setStatusCustom(false)
     }
 
+
     const handleCancel = (e) => {
         e.preventDefault();
         setInput(emptyInputsObj)
         setStatusCustom(false);
-        setIsUpdating(false)
+        setIsUpdating(false);
+        setIsActive(false);
     }
 
     const handleSubmit = async (e) => {
@@ -99,7 +102,7 @@ const WorkerForm = () => {
                 address: input.address,
                 number: input.number,
                 email: input.email,
-                type: '',
+                type: input.type,
                 from: input.from,
                 to: input.to
             }

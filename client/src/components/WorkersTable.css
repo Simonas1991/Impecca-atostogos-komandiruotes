@@ -14,7 +14,15 @@
     font-size: 20px;
 }
 
+.workers-table__body>tr {
+    border-bottom: 1px solid #000000;
+}
+
 .workers-table__body>tr>td {
     padding: 8px;
     text-align: center;
+}
+
+.active {
+    background-color: #BE2F29;
 }
