@@ -48,8 +48,6 @@ const HolidayWorkForm = () => {
         }
     }
 
-
-
     return (
         <form className='form-container' onSubmit={handleSubmit}>
             <div className='form-control'>

@@ -12,15 +12,15 @@ const schema = new mongoose.Schema(
         },
         personalCode: {
             type: String,
-            required: true
+            required: false
         },
         address: {
             type: String,
-            required: true
+            required: false
         },
         number: {
             type: String,
-            required: true
+            required: false
         },
         email: {
             type: String,
