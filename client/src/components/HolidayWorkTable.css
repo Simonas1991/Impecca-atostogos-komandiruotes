@@ -1,15 +1,15 @@
-.tables-container{
+.tables-container {
     display: flex;
     justify-content: space-evenly;
 }
 
-.tables-container>div>h3{
+.tables-container>div>h3 {
     text-align: center;
     margin: 1rem;
 }
 
 .table {
-    margin:auto 0 100px;
+    margin: auto 0 100px;
     border: 1px solid #000000;
     border-collapse: collapse;
 }
@@ -24,10 +24,21 @@
     font-size: 20px;
 }
 
-.warning{
+.warning {
     background-color: #E40C2B;
 }
 
-.green{
+.green {
     background-color: #438945;
+}
+
+.btn-container {
+    display: flex;
+    margin: 30px auto;
+}
+
+.btn-container button{
+    padding: 4px;
+    width: 100px;
+    margin: 10px;
 }

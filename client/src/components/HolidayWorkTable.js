@@ -1,5 +1,5 @@
 // libs
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { WorkersContext } from '../App';
 
 // css
@@ -7,9 +7,20 @@ import './HolidayWorkTable.css';
 
 const HolidayWorkTable = () => {
     // hooks
+    // hooks
+    // - useState
+    const [activeId, setActiveId] = useState('')
+
     // - useContext
     const workersContext = useContext(WorkersContext);
-    let { workers, setUpdatingId, setInput } = workersContext;
+    let {
+        workers,
+        setUpdatingId,
+        setInput,
+        isActive,
+        setIsActive,
+        isUpdating,
+        setIsUpdating } = workersContext;
 
     // variables
     let holidayArray = workers.filter(worker => worker.type === 'holiday');
@@ -18,13 +29,12 @@ const HolidayWorkTable = () => {
 
     // functions
     const handleUpdate = (e, worker) => {
-        let { to, from } = worker
-        console.log(to, from)
+        e.preventDefault();
+        setIsActive(!isActive)
+        setActiveId(worker._id)
+        setIsUpdating(!isUpdating)
         setUpdatingId(worker._id)
-        setInput({
-            to: to,
-            from: from
-        })
+        setInput(worker)
     }
 
     const dateChecker = (string) => {
@@ -39,7 +49,7 @@ const HolidayWorkTable = () => {
         return (
             arr.map((worker, i) => (
                 <tbody key={i} className='workers-table__body'>
-                    <tr>
+                    <tr className={activeId === worker._id && isActive ? 'active' : ''}>
                         <td>{worker.name}</td>
                         <td>{worker.surname}</td>
                         <td>{worker.personalCode}</td>

@@ -13,8 +13,14 @@ const HolidayWorkForm = () => {
         input,
         setInput,
         setIsUpdating,
-        updatingId
+        updatingId,
     } = workersContext;
+
+    // variables
+    const emptyInputsObj = {
+        to: '',
+        from: ''
+    }
 
     // functions
     const handleChange = (e) => {
@@ -26,6 +32,11 @@ const HolidayWorkForm = () => {
             }
         })
     };
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setInput(emptyInputsObj)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -68,7 +79,10 @@ const HolidayWorkForm = () => {
                     onChange={handleChange}
                 />
             </div>
-            <button style={{ display: 'flex', margin: '30px auto', padding: '4px' }}>Keisti data</button>
+            <div className='btn-container'>
+                <button>Keisti data</button>
+                <button onClick={handleCancel}>Atsaukti</button>
+            </div>
         </form>
     )
 }
