@@ -1,5 +1,5 @@
 // libs
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { WorkersContext } from '../App';
 
@@ -8,6 +8,8 @@ import './WorkerForm.css';
 
 const WorkerForm = () => {
     // hooks
+    const [statusArray, setStatusArray] = useState(['nostatus', 'holiday', 'work'])
+
     // - useContext
     const workersContext = useContext(WorkersContext);
     let {
@@ -22,7 +24,7 @@ const WorkerForm = () => {
         updatingId,
         setIsActive,
         statusCustom,
-        setStatusCustom
+        setStatusCustom,
     } = workersContext;
 
     // variables
@@ -33,7 +35,7 @@ const WorkerForm = () => {
         address: '',
         number: '',
         email: '',
-        type: '',
+        type: 'nostatus',
         to: '',
         from: ''
     }
@@ -51,6 +53,7 @@ const WorkerForm = () => {
 
     const handleSelect = (e) => {
         const { name, value } = e.target;
+        console.log(e.target.value)
         setInput((prevInput) => {
             return {
                 ...prevInput,
@@ -178,16 +181,16 @@ const WorkerForm = () => {
                 <label>Statusas:</label>
                 {!statusCustom ?
                     <select name="type" value={input.type} onChange={handleSelect}>
-                        <option value="">Be statuso</option>
-                        <option value="holiday">Neapmokamose atostogose</option>
-                        <option value="work">Komandiruoteje</option>
+                        <option value={statusArray[0]}>Be statuso</option>
+                        <option value={statusArray[1]}>Neapmokamose atostogose</option>
+                        <option value={statusArray[2]}>Komandiruoteje</option>
                     </select>
                     :
                     <>
                         <select name="type" value={input.type} onChange={handleSelect}>
-                            <option value="">Be statuso</option>
-                            <option value="holiday">Neapmokamose atostogose</option>
-                            <option value="work">Komandiruoteje</option>
+                            <option value={statusArray[0]}>Be statuso</option>
+                            <option value={statusArray[1]}>Neapmokamose atostogose</option>
+                            <option value={statusArray[2]}>Komandiruoteje</option>
                         </select>
                         <label>Nuo</label>
                         <input name="from" value={input.from} onChange={handleChange} />

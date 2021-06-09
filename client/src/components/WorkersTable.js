@@ -57,7 +57,18 @@ const WorkersTable = () => {
         if (isUpdating) setStatusCustom(false)
         setIsUpdating(!isUpdating)
         setUpdatingId(worker._id)
-        setInput(worker)
+        if (!isActive) setInput(worker)
+        else setInput({
+            name: '',
+            surname: '',
+            personalCode: '',
+            address: '',
+            number: '',
+            email: '',
+            type: 'nostatus',
+            to: '',
+            from: ''
+        })
     }
 
     return (

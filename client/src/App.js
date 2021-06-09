@@ -43,7 +43,7 @@ const App = () => {
     address: '',
     number: '',
     email: '',
-    type: '',
+    type: 'nostatus',
     from: '',
     to: ''
   });
@@ -72,7 +72,7 @@ const App = () => {
       statusCustom,
       setStatusCustom,
       isActive,
-      setIsActive
+      setIsActive,
     }}>
       <Router>
         <Navbar />

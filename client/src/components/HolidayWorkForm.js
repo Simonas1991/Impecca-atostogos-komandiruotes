@@ -14,6 +14,7 @@ const HolidayWorkForm = () => {
         setInput,
         setIsUpdating,
         updatingId,
+        setIsActive
     } = workersContext;
 
     // variables
@@ -35,6 +36,7 @@ const HolidayWorkForm = () => {
 
     const handleCancel = (e) => {
         e.preventDefault();
+        setIsActive(false)
         setInput(emptyInputsObj)
     }
 

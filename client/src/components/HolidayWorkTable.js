@@ -7,7 +7,6 @@ import './HolidayWorkTable.css';
 
 const HolidayWorkTable = () => {
     // hooks
-    // hooks
     // - useState
     const [activeId, setActiveId] = useState('')
 
@@ -27,6 +26,7 @@ const HolidayWorkTable = () => {
     let workArray = workers.filter(worker => worker.type === 'work');
     let noStatusArray = workers.filter(worker => worker.type === '');
 
+
     // functions
     const handleUpdate = (e, worker) => {
         e.preventDefault();
@@ -34,7 +34,11 @@ const HolidayWorkTable = () => {
         setActiveId(worker._id)
         setIsUpdating(!isUpdating)
         setUpdatingId(worker._id)
-        setInput(worker)
+        if (!isActive) setInput(worker)
+        else setInput({
+            to: '',
+            from: ''
+        })
     }
 
     const dateChecker = (string) => {
