@@ -42,7 +42,6 @@ const WorkersTable = () => {
         e.preventDefault();
         setIsActive(!isActive)
         setActiveId(worker._id)
-        console.log(worker._id)
         switch (worker.type) {
             case '':
                 setStatusCustom(false)
@@ -60,7 +59,7 @@ const WorkersTable = () => {
         setUpdatingId(worker._id)
         setInput(worker)
     }
-    console.log(isActive)
+
     return (
         <table className='workers-table'>
             <thead className='workers-table__header'>
@@ -77,7 +76,7 @@ const WorkersTable = () => {
             </thead>
             <tbody className='workers-table__body'>
                 {workers.map((worker, i) => (
-                    <tr key={i}  className={activeId === worker._id && isActive ? 'active' : ''}>
+                    <tr key={i} className={activeId === worker._id && isActive ? 'active' : ''}>
                         <td>{worker.name}</td>
                         <td>{worker.surname}</td>
                         <td>{worker.personalCode}</td>

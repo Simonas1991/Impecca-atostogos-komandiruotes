@@ -17,16 +17,23 @@ const HolidayWorkTable = () => {
     let noStatusArray = workers.filter(worker => worker.type === '');
 
     // functions
-const handleUpdate = (e, worker) => {
-    let {to , from} = worker
-    console.log(to , from)
-    setUpdatingId(worker._id)
-    setInput({
-        to: to,
-        from: from
-    })
-    
-}
+    const handleUpdate = (e, worker) => {
+        let { to, from } = worker
+        console.log(to, from)
+        setUpdatingId(worker._id)
+        setInput({
+            to: to,
+            from: from
+        })
+    }
+
+    const dateChecker = (string) => {
+        const dateTo = new Date(string);
+        const dateNow = new Date()
+        if (dateTo > dateNow) return true
+        else if (dateTo < dateNow) return false
+        else if (dateTo === dateNow) return false
+    }
 
     const mapArr = (arr) => {
         return (
@@ -37,7 +44,7 @@ const handleUpdate = (e, worker) => {
                         <td>{worker.surname}</td>
                         <td>{worker.personalCode}</td>
                         <td>{worker.from}</td>
-                        <td>{worker.to}</td>
+                        <td className={dateChecker(worker.to) ? 'green' : 'warning'}>{worker.to}</td>
                         <td><button onClick={(e) => handleUpdate(e, worker)}>Keisti</button></td>
                     </tr>
                 </tbody>
