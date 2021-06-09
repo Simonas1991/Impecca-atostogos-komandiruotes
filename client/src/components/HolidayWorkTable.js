@@ -24,7 +24,7 @@ const HolidayWorkTable = () => {
     // variables
     let holidayArray = workers.filter(worker => worker.type === 'holiday');
     let workArray = workers.filter(worker => worker.type === 'work');
-    let noStatusArray = workers.filter(worker => worker.type === '');
+    let noStatusArray = workers.filter(worker => worker.type === 'nostatus');
 
 
     // functions
@@ -36,6 +36,8 @@ const HolidayWorkTable = () => {
         setUpdatingId(worker._id)
         if (!isActive) setInput(worker)
         else setInput({
+            name: '',
+            surname: '',
             to: '',
             from: ''
         })

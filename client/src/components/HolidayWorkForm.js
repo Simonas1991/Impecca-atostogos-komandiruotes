@@ -51,10 +51,7 @@ const HolidayWorkForm = () => {
             await axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedDates)
             setIsUpdating(false)
             setUpdateClick(!updateClick)
-            setInput({
-                from: '',
-                to: ''
-            })
+            setInput(emptyInputsObj)
         }
         catch (err) {
             console.log(err)
@@ -63,6 +60,24 @@ const HolidayWorkForm = () => {
 
     return (
         <form className='form-container' onSubmit={handleSubmit}>
+            <div className='form-control'>
+                <label>Vardas</label>
+                <input
+                    type='text'
+                    name='name'
+                    value={input.name}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className='form-control'>
+                <label>Pavardė</label>
+                <input
+                    type='text'
+                    name='surname'
+                    value={input.surname}
+                    onChange={handleChange}
+                />
+            </div>
             <div className='form-control'>
                 <label>Nuo</label>
                 <input

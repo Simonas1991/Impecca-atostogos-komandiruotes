@@ -91,6 +91,7 @@ const WorkerForm = () => {
                 await axios.patch(`http://localhost:5000/workers/${updatingId}`, updatedNote)
                 setIsUpdating(false)
                 setUpdateClick(!updateClick)
+                setIsActive(false)
                 setInput(emptyInputsObj)
             }
             catch (err) {
