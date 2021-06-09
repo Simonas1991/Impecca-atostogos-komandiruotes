@@ -97,8 +97,8 @@ const HolidayWorkForm = () => {
                 />
             </div>
             <div className='btn-container'>
-                <button>Keisti data</button>
                 <button onClick={handleCancel}>Atsaukti</button>
+                <button>Keisti data</button>
             </div>
         </form>
     )
